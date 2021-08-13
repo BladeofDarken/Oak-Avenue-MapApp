@@ -32,6 +32,7 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polyline;
+import java.lang.Math;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -332,11 +333,11 @@ public class MapRoute extends AppCompatActivity {
                     startMarker.setPosition(StaffParkingLot);
                     waypoints.add(StaffParkingLot);
                     break;
-                case "Staff Parking Lot":
+                case "Parking Lot - Staff":
                     startMarker.setPosition(SenateRoom);
                     waypoints.add(SenateRoom);
                     break;
-                case "Student / North Parking Lot":
+                case "Parking Lot - Student / North":
                     startMarker.setPosition(NorthParkingLot);
                     waypoints.add(NorthParkingLot);
                     break;
@@ -464,11 +465,11 @@ public class MapRoute extends AppCompatActivity {
                     startMarker2.setPosition(StaffParkingLot);
                     waypoints.add(StaffParkingLot);
                     break;
-                case "Staff Parking Lot":
+                case "Parking Lot - Staff":
                     startMarker2.setPosition(SenateRoom);
                     waypoints.add(SenateRoom);
                     break;
-                case "Student / North Parking Lot":
+                case "Parking Lot - Student / North":
                     startMarker2.setPosition(NorthParkingLot);
                     waypoints.add(NorthParkingLot);
                     break;
