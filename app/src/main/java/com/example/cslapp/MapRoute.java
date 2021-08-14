@@ -59,9 +59,14 @@ public class MapRoute extends AppCompatActivity {
 
     GeoPoint updatedUserLocation;
 
+    IMapController mapController;
+
     private static ArrayList<GeoPoint> waypoints = new ArrayList<GeoPoint>();
 
     private OSRMRoadManager roadManager = null;
+
+    GeoPoint getStartingMarker;
+    GeoPoint getDestinationMarker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,7 +103,7 @@ public class MapRoute extends AppCompatActivity {
         map.setTileSource(TileSourceFactory.MAPNIK);
         newMarker = new Marker(map);
 
-        IMapController mapController = map.getController();
+        mapController = map.getController();
         GeoPoint point = new GeoPoint(34.117996037118125, -118.06497059621705);
         mapController.setCenter(point);
         mapController.setZoom(18.7);
@@ -109,7 +114,6 @@ public class MapRoute extends AppCompatActivity {
         roadManager.setMean(OSRMRoadManager.MEAN_BY_FOOT);
 
         newMarker.setIcon(getDrawable(R.drawable.greencurrentlocation));
-
 
 
         requestPermissionsIfNecessary(new String[]{
@@ -130,35 +134,7 @@ public class MapRoute extends AppCompatActivity {
 
         newMethod();
 
-        // zoomToCenterAroundMarkers(waypoints); // not working
-
-    } // end of onCreate Method
-
-    private void zoomToCenterAroundMarkers(ArrayList<GeoPoint> waypoints){
-
-
-/*
-        double north = -90;
-        double south = 90;
-        double west = 180;
-        double east = -180;
-
-        for (GeoPoint point : waypoints) {
-            north = Math.max(point.getLatitude(), north);
-            south = Math.min(point.getLatitude(), south);
-
-            west = Math.min(point.getLongitude(), west);
-            east = Math.max(point.getLongitude(), east);
-        }
-
-
-
-        BoundingBox box = BoundingBox.fromGeoPoints(waypoints);
-        map.zoomToBoundingBox(box, true);
-
- */
     }
-
 
 
     private void newMethod() {
@@ -353,6 +329,7 @@ public class MapRoute extends AppCompatActivity {
             }
         }
 
+
         if (MainActivity.dataretrieve2 != null) {
             switch (MainActivity.dataretrieve2) {
                 case "My Current Location":
@@ -488,10 +465,43 @@ public class MapRoute extends AppCompatActivity {
         startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         startMarker2.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
 
+        getStartingMarker = startMarker.getPosition();
+        getDestinationMarker = startMarker2.getPosition();
+
         map.getOverlays().add(startMarker);
         map.getOverlays().add(startMarker2);
 
+        mapZoom();
+
         routeUpdate();
+    }
+
+    private void mapZoom(){
+
+
+
+        double lat1 = getStartingMarker.getLatitude();
+        double lat2 = getDestinationMarker.getLatitude();
+        double averageLat = (lat1 + lat2) / 2;
+        System.out.println("Average Lat" + averageLat);
+        double long1 = getStartingMarker.getLongitude();
+        double long2 = getDestinationMarker.getLongitude();
+        double averageLong = (long1 + long2) / 2;
+        System.out.println("Average Long" + averageLong);
+
+        GeoPoint AverageGeoPoint = new GeoPoint(averageLat, averageLong);
+
+        double difference = (Math.abs(lat1 - lat2));
+
+        double part1 = (360 / difference);
+        double result = (Math.log(part1) / Math.log(2));
+        double Final = (result + 0.125);
+
+        System.out.println("Final" + Final);
+
+        mapController.setZoom(Final);
+        mapController.setCenter(AverageGeoPoint);
+
     }
 
     private void routeUpdate(){
