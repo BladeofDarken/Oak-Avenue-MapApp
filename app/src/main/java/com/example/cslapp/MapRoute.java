@@ -28,7 +28,9 @@ import org.osmdroid.bonuspack.routing.Road;
 import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.BoundingBox;
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.util.MyMath;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polyline;
@@ -473,6 +475,7 @@ public class MapRoute extends AppCompatActivity {
 
         mapZoom();
 
+
         routeUpdate();
     }
 
@@ -491,18 +494,32 @@ public class MapRoute extends AppCompatActivity {
 
         GeoPoint AverageGeoPoint = new GeoPoint(averageLat, averageLong);
 
+
         double difference = (Math.abs(lat1 - lat2));
+        double difference1 = (Math.abs(long1 - long2));
 
-        double part1 = (360 / difference);
+        double part1 = (360.0 / difference);
         double result = (Math.log(part1) / Math.log(2));
-        double Final = (result + 0.125);
+        System.out.println("Final" + (result));
 
-        System.out.println("Final" + Final);
 
-        mapController.setZoom(Final);
+
+        if (result < 18.3){
+            System.out.println("Zoom is less than 18.5");
+            mapController.setZoom(18.3);
+        }
+        else if (result > 20.9){
+            System.out.println("Zoom is greater than 20.9");
+            mapController.setZoom(20.9);
+        }
+        else{
+            mapController.setZoom(result);
+        }
+
         mapController.setCenter(AverageGeoPoint);
-
     }
+
+
 
     private void routeUpdate(){
 
@@ -515,58 +532,6 @@ public class MapRoute extends AppCompatActivity {
         Polyline roadOverlay = RoadManager.buildRoadOverlay(road);
         map.getOverlays().add(0, roadOverlay);
         // map.invalidate();
-
-
-/*
-        Drawable nodeIcon = getResources().getDrawable(R.drawable.marker_node);
-        for (int i = 0; i < road.mNodes.size(); i++) {
-            RoadNode node = road.mNodes.get(i);
-            Marker nodeMarker = new Marker(map);
-            nodeMarker.setPosition(node.mLocation);
-            nodeMarker.setIcon(nodeIcon);
-            nodeMarker.setTitle("Step " + i);
-            map.getOverlays().add(nodeMarker);
-            nodeMarker.setSnippet(node.mInstructions);
-            nodeMarker.setSubDescription(Road.getLengthDurationText(this, node.mLength, node.mDuration));
-
-            int ManueverID = node.mManeuverType;
-
-            switch (ManueverID) {
-                case 0:
-                    Drawable icon = getResources().getDrawable(R.drawable.ic_empty);
-                    nodeMarker.setImage(icon);
-                    break;
-                case 1:
-                    Drawable icon1 = getResources().getDrawable(R.drawable.ic_continue);
-                    nodeMarker.setImage(icon1);
-                    break;
-                case 3:
-                    Drawable icon2 = getResources().getDrawable(R.drawable.ic_slight_left);
-                    nodeMarker.setImage(icon2);
-                    break;
-                case 4:
-                    Drawable icon3 = getResources().getDrawable(R.drawable.ic_turn_left);
-                    nodeMarker.setImage(icon3);
-                    break;
-                case 6:
-                    Drawable icon4 = getResources().getDrawable(R.drawable.ic_slight_right);
-                    nodeMarker.setImage(icon4);
-                    break;
-                case 7:
-                    Drawable icon5 = getResources().getDrawable(R.drawable.ic_turn_right);
-                    nodeMarker.setImage(icon5);
-                    break;
-                case 12:
-                    Drawable icon6 = getResources().getDrawable(R.drawable.ic_u_turn);
-                    nodeMarker.setImage(icon6);
-                    break;
-
-            }
-
-
-        }
-
- */
 
 
     }
