@@ -86,6 +86,14 @@ public class CatagoryDepartments extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        System.out.println("Back Key Pressed from Catagory Departments");
+        startingLocation.selectedItem = "FILLER";
+        System.out.println(startingLocation.selectedItem);
+        super.onBackPressed();
+    }
+
     private void changeActivityToDepartments(){
         Intent i = new Intent(this, SearchByDepartment.class);
         startActivity(i);

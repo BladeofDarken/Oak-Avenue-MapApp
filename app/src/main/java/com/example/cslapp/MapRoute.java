@@ -474,8 +474,6 @@ public class MapRoute extends AppCompatActivity {
         map.getOverlays().add(startMarker2);
 
         mapZoom();
-
-
         routeUpdate();
     }
 
@@ -515,7 +513,6 @@ public class MapRoute extends AppCompatActivity {
         else{
             mapController.setZoom(result);
         }
-
         mapController.setCenter(AverageGeoPoint);
     }
 
@@ -615,7 +612,6 @@ public class MapRoute extends AppCompatActivity {
                 }
 
             }
-
 
         }
     };

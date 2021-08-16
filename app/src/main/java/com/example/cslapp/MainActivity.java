@@ -128,11 +128,18 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             System.out.println("Selected Item" + startingLocation.selectedItem);
                                 if (startingLocation.selectedItem != null){
-                                    button1.setText(startingLocation.selectedItem);
-                                    selectedValue = startingLocation.selectedItem;
-                                    startingLocation.selectedItem = null;
-                                    System.out.println("6" + startingLocation.selectedItem);
-                                    System.out.println("2" + "Final Value : " + selectedValue);
+                                    if (startingLocation.selectedItem == "FILLER"){
+                                        System.out.println("8");
+                                        startingLocation.selectedItem = null;
+                                    }
+                                    else{
+                                        button1.setText(startingLocation.selectedItem);
+                                        selectedValue = startingLocation.selectedItem;
+                                        startingLocation.selectedItem = null;
+                                        System.out.println("6" + startingLocation.selectedItem);
+                                        System.out.println("2" + "Final Value : " + selectedValue);
+                                    }
+
 
                                 }
                                 if (CatagoryDepartments.ButtonClicked == 2){
@@ -147,8 +154,8 @@ public class MainActivity extends AppCompatActivity {
                                     System.out.println("Final Value : " + selectedValue);
                                     CatagoryDepartments.ButtonClicked = 0;
                                     System.out.println("4" + startingLocation.selectedItem);
-
                                 }
+
                             System.out.println("5" + startingLocation.selectedItem);
 
                         }
@@ -175,24 +182,50 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     button2.post(new Runnable() {
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
                             System.out.println("Selected Item" + startingLocation.selectedItem);
-                            if (startingLocation.selectedItem != null) {
+                            if (startingLocation.selectedItem != null){
+                                if (startingLocation.selectedItem == "FILLER"){
+                                    System.out.println("8");
+                                    startingLocation.selectedItem = null;
+                                }
+                                else{
+                                    button2.setText(startingLocation.selectedItem);
+                                    selectedValue2 = startingLocation.selectedItem;
+                                    startingLocation.selectedItem = null;
+                                    System.out.println("6" + startingLocation.selectedItem);
+                                    System.out.println("2" + "Final Value : " + selectedValue2);
+                                }
+
+                            }
+                            if (CatagoryDepartments.ButtonClicked == 2){
+
+                                String MyCurrentLocation = "My Current Location";
+
+                                startingLocation.selectedItem = MyCurrentLocation;
                                 button2.setText(startingLocation.selectedItem);
                                 selectedValue2 = startingLocation.selectedItem;
-                                startingLocation.selectedItem = null;
+                                System.out.println("3" + startingLocation.selectedItem);
+                                // startingLocation.selectedItem = null;
                                 System.out.println("Final Value : " + selectedValue2);
+                                CatagoryDepartments.ButtonClicked = 0;
+                                System.out.println("4" + startingLocation.selectedItem);
+
                             }
+                            System.out.println("5" + startingLocation.selectedItem);
+
                         }
+
                     });
                 }
             }
         };
-        Thread newThread2 = new Thread(CheckForDestinationButtonClick);
-        newThread2.start();
-    }
 
+        newThread  = new Thread(CheckForDestinationButtonClick);
+        newThread.start();
+    }
 
     private void changeToCategoryDepartmentsActivity() {
         Intent intent = new Intent(this, CatagoryDepartments.class);
