@@ -56,12 +56,20 @@ public class CatagoryDepartments extends AppCompatActivity {
         button9.setOnClickListener(new View.OnClickListener() { // My Current Location
             @Override
             public void onClick(View v) {
-                MyCurrentLocation = "My Current Location";
-                ButtonClicked = 2;
+
+                if (MainActivity.MainButtonPressed == 2){
+                    Toast.makeText(getApplicationContext(), "Error 3 : Hmm are you trying to use your current location as a marker ? Hint : Go back to the homepage and select Starting Location to use this functionality" , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Error 3 : Hmm are you trying to use your current location as a marker ? Hint : Go back to the homepage and select Starting Location to use this functionality" , Toast.LENGTH_LONG).show();
+                }
+                else{
+                    MyCurrentLocation = "My Current Location";
+                    ButtonClicked = 2;
                     Intent returnIntent = new Intent();
                     returnIntent.putExtra("result", MyCurrentLocation);
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
+                }
+
             }
         });
         button10.setOnClickListener(new View.OnClickListener() { // Popular Destinations

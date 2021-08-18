@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         button2 = findViewById(R.id.btnRound2);
         button3 = findViewById(R.id.btnRound3);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        button1.setOnClickListener(new View.OnClickListener() { // Starting Location
             @Override
             public void onClick(View v) {
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        button2.setOnClickListener(new View.OnClickListener() { // Destination
             @Override
             public void onClick(View v) {
                 ActivityClass.VALUE = 2;
@@ -106,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
         else if (dataretrieve2 == null){
             Toast.makeText(getApplicationContext(),"Please select a destination before continuing", Toast.LENGTH_SHORT).show();
         }
+        else if (dataretrieve.equals(dataretrieve2)){
+            Toast.makeText(getApplicationContext(),"Seems like your starting location is the same as your destination. You want to travel to where you are now? \uD83D\uDE09 ", Toast.LENGTH_LONG).show();
+        }
         else{
             Intent intent = new Intent(MainActivity.this, MapRoute.class);
             startActivity(intent);
@@ -118,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 while (startingLocation.selectedItem == null) {
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(250);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -126,17 +129,17 @@ public class MainActivity extends AppCompatActivity {
                         @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
-                            System.out.println("Selected Item" + startingLocation.selectedItem);
+                            // System.out.println("Selected Item" + startingLocation.selectedItem);
                                 if (startingLocation.selectedItem != null){
                                     if (startingLocation.selectedItem == "FILLER"){
-                                        System.out.println("8");
+                                        // System.out.println("8");
                                         startingLocation.selectedItem = null;
                                     }
                                     else{
                                         button1.setText(startingLocation.selectedItem);
                                         selectedValue = startingLocation.selectedItem;
                                         startingLocation.selectedItem = null;
-                                        System.out.println("6" + startingLocation.selectedItem);
+                                        // System.out.println("6" + startingLocation.selectedItem);
                                         System.out.println("2" + "Final Value : " + selectedValue);
                                     }
 
@@ -149,14 +152,14 @@ public class MainActivity extends AppCompatActivity {
                                     startingLocation.selectedItem = MyCurrentLocation;
                                     button1.setText(startingLocation.selectedItem);
                                     selectedValue = startingLocation.selectedItem;
-                                    System.out.println("3" + startingLocation.selectedItem);
+                                    // System.out.println("3" + startingLocation.selectedItem);
                                     // startingLocation.selectedItem = null;
                                     System.out.println("Final Value : " + selectedValue);
                                     CatagoryDepartments.ButtonClicked = 0;
-                                    System.out.println("4" + startingLocation.selectedItem);
+                                    // System.out.println("4" + startingLocation.selectedItem);
                                 }
 
-                            System.out.println("5" + startingLocation.selectedItem);
+                            // System.out.println("5" + startingLocation.selectedItem);
 
                         }
 
@@ -177,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 while (startingLocation.selectedItem == null) {
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(250);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

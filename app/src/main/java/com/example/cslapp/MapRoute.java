@@ -70,10 +70,13 @@ public class MapRoute extends AppCompatActivity {
     GeoPoint getStartingMarker;
     GeoPoint getDestinationMarker;
 
+    private static int timesZoomed = 2;
+
+    private static double lat3 = 0;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        System.out.println("Point 1");
         getLastLocation();
 
         super.onCreate(savedInstanceState);
@@ -127,7 +130,6 @@ public class MapRoute extends AppCompatActivity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("Point 2");
                 // mapController.setCenter(locationOverlay.getMyLocation());
                 getLastLocation();
 
@@ -473,58 +475,107 @@ public class MapRoute extends AppCompatActivity {
         map.getOverlays().add(startMarker);
         map.getOverlays().add(startMarker2);
 
-        mapZoom();
+        if (CatagoryDepartments.ButtonClicked == 2){
+            System.out.println("My Current Location Button Clicked");
+        }
+        else{
+            mapZoom();
+        }
+
+
+
         routeUpdate();
     }
 
     private void mapZoom(){
 
+        double averageLat;
+        double averageLong;
+        double difference;
+
+        double long3;
+
+
 
 
         double lat1 = getStartingMarker.getLatitude();
         double lat2 = getDestinationMarker.getLatitude();
-        double averageLat = (lat1 + lat2) / 2;
-        System.out.println("Average Lat" + averageLat);
+
+
+
         double long1 = getStartingMarker.getLongitude();
         double long2 = getDestinationMarker.getLongitude();
-        double averageLong = (long1 + long2) / 2;
+
+
+        if (timesZoomed == 1){
+            lat3 = updatedUserLocation.getLatitude();
+            long3 = updatedUserLocation.getLongitude();
+            averageLat = (lat3 + lat2) / 2;
+            averageLong = (long3 + long2) / 2;
+        }
+        else{
+            averageLat = (lat1 + lat2) / 2;
+            averageLong = (long1 + long2) / 2;
+        }
+
+        System.out.println("Average Lat" + averageLat);
         System.out.println("Average Long" + averageLong);
+
 
         GeoPoint AverageGeoPoint = new GeoPoint(averageLat, averageLong);
 
 
-        double difference = (Math.abs(lat1 - lat2));
-        double difference1 = (Math.abs(long1 - long2));
+        if (timesZoomed == 1){
+            System.out.println("Lat 2 : " + lat2);
+            System.out.println("Lat 3 : " + lat3);
+            difference = (Math.abs(lat2 - lat3));
+            System.out.println("Difference" + difference);
+
+        }
+        else{
+            difference = (Math.abs(lat1 - lat2));
+
+        }
+
 
         double part1 = (360.0 / difference);
+        System.out.println("Part 1 : " + part1);
         double result = (Math.log(part1) / Math.log(2));
         System.out.println("Final" + (result));
 
 
-
-        if (result < 18.3){
-            System.out.println("Zoom is less than 18.5");
-            mapController.setZoom(18.3);
-        }
-        else if (result > 20.9){
-            System.out.println("Zoom is greater than 20.9");
-            mapController.setZoom(20.9);
-        }
-        else{
+        if (timesZoomed == 1){
+            System.out.println("Nothing changed");
             mapController.setZoom(result);
         }
+        else{
+            if (result < 18.3){
+                System.out.println("Zoom is less than 18.5");
+                mapController.setZoom(18.3);
+            }
+            else if (result > 20.9){
+                System.out.println("Zoom is greater than 20.9");
+                mapController.setZoom(20.9);
+            }
+            else{
+                mapController.setZoom(result);
+            }
+        }
+
         mapController.setCenter(AverageGeoPoint);
     }
 
 
 
     private void routeUpdate(){
-
+/*
         for (int i = 0; i < waypoints.size(); i++){
             System.out.println(i);
             System.out.println(waypoints.get(i));
         }
 
+ */
+        System.out.println(waypoints);
         Road road = roadManager.getRoad(waypoints);
         Polyline roadOverlay = RoadManager.buildRoadOverlay(road);
         map.getOverlays().add(0, roadOverlay);
@@ -532,6 +583,7 @@ public class MapRoute extends AppCompatActivity {
 
 
     }
+
     @SuppressLint("MissingPermission")
     private void getLastLocation() {
         // check if permissions are given
@@ -596,9 +648,20 @@ public class MapRoute extends AppCompatActivity {
 
 
             if (Objects.equals(MainActivity.dataretrieve, "My Current Location")){
+
+                if (timesZoomed == 1){
+                    System.out.println("Inside timeZoomed if statement");
+                    mapZoom();
+                    timesZoomed = timesZoomed - 1;
+                }
+                if (timesZoomed > 1){
+                    timesZoomed = timesZoomed - 1;
+                    System.out.println("Time Zoomed" + timesZoomed);
+                }
+
                 int size = waypoints.size();
 
-                System.out.println("MyCurrentLocation");
+
                 if (waypoints.size() > 0){
                     if (waypoints.size() == 1) {
                         waypoints.add(updatedUserLocation);
@@ -681,7 +744,6 @@ public class MapRoute extends AppCompatActivity {
                     permissionsToRequest.toArray(new String[0]),
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
-        System.out.println("Point 2");
         if (requestCode == PERMISSION_ID) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLastLocation();
