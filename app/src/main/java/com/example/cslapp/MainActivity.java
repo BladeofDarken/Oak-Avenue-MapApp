@@ -3,6 +3,8 @@ package com.example.cslapp;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.view.*;
@@ -56,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         button2 = findViewById(R.id.btnRound2);
         button3 = findViewById(R.id.btnRound3);
 
+
+
         button1.setOnClickListener(new View.OnClickListener() { // Starting Location
             @Override
             public void onClick(View v) {
@@ -83,13 +87,43 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // PrivacyMessage();
                 variablesTransferred();
+
 
             }
 
         });
 
+
+
+    }
+
+    private void PrivacyMessage(){
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+//set icon
+                .setIcon(android.R.drawable.ic_dialog_alert)
+//set title
+                .setTitle("Are you sure to Exit")
+//set message
+                .setMessage("Exiting will call finish() method")
+//set positive button
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //set what would happen when positive button is clicked
+                        finish();
+                    }
+                })
+//set negative button
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //set what should happen when negative button is clicked
+                        Toast.makeText(getApplicationContext(),"Nothing Happened",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .show();
     }
 
 
