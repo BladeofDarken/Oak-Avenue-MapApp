@@ -7,17 +7,22 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.*;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
 
     public static class ActivityClass {
@@ -48,6 +53,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(uiOptions);
+        ActionBar actionBar;
+        actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable
+                = new ColorDrawable(Color.parseColor("#32D125"));
+        actionBar.setBackgroundDrawable(colorDrawable);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
@@ -87,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // PrivacyMessage();
                 variablesTransferred();
 
 
@@ -95,36 +108,36 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
+        checkFirstRun();
 
     }
 
-    private void PrivacyMessage(){
-        AlertDialog alertDialog = new AlertDialog.Builder(this)
-//set icon
-                .setIcon(android.R.drawable.ic_dialog_alert)
-//set title
-                .setTitle("Are you sure to Exit")
-//set message
-                .setMessage("Exiting will call finish() method")
-//set positive button
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //set what would happen when positive button is clicked
-                        finish();
-                    }
-                })
-//set negative button
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //set what should happen when negative button is clicked
-                        Toast.makeText(getApplicationContext(),"Nothing Happened",Toast.LENGTH_LONG).show();
-                    }
-                })
-                .show();
+    public void checkFirstRun() {
+        boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
+        if (isFirstRun){
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setCancelable(true);
+            builder.setTitle("Terms and Conditions Acknowledgement");
+            builder.setMessage("Thank you for using our map. Please review our privacy policy. Keep in mind, everything from this app is through AI software, so please use your own discretion. The map will only bring you to an approximate location, and if you find any bugs, please help us and report them. Happy travels!");
+            builder.setPositiveButton("I UNDERSTAND",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                    .edit()
+                    .putBoolean("isFirstRun", false)
+                    .apply();
+        }
     }
+
+
+
 
 
     private void variablesTransferred(){

@@ -2,15 +2,19 @@ package com.example.cslapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SearchByDepartment extends AppCompatActivity {
+public class  SearchByDepartment extends AppCompatActivity {
 
     public static int buttonClicked;
 
@@ -35,13 +39,11 @@ public class SearchByDepartment extends AppCompatActivity {
 
         TextView changeText = findViewById(R.id.textView7);
 
-        if(MainActivity.MainButtonPressed == 1){
+        if (MainActivity.MainButtonPressed == 1) {
             changeText.setText("STARTING LOCATION");
-        }
-        else if (MainActivity.MainButtonPressed == 2){
+        } else if (MainActivity.MainButtonPressed == 2) {
             changeText.setText("DESTINATION");
-        }
-        else{
+        } else {
             changeText.setText("INVALID");
         }
 
@@ -66,8 +68,11 @@ public class SearchByDepartment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 buttonClicked = 3;
+                Toast.makeText(getApplicationContext(),"Awh. Seems like you hit a roadblock. This feature isn't available yet. Our development team is working to improve the service. Be sure to check again next time and maybe it'll be fixed then :)", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Awh. Seems like you hit a roadblock. This feature isn't available yet. Our development team is working day to improve the service. Be sure to check again next time and maybe it'll be fixed then :)", Toast.LENGTH_SHORT).show();
             }
         });
+
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,8 +86,11 @@ public class SearchByDepartment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 buttonClicked = 5;
+                Toast.makeText(getApplicationContext(),"Awh. Seems like you hit a roadblock. This feature isn't available yet. Our development team is working to improve the service. Be sure to check again next time and maybe it'll be fixed then :)", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Awh. Seems like you hit a roadblock. This feature isn't available yet. Our development team is working to improve the service. Be sure to check again next time and maybe it'll be fixed then :)", Toast.LENGTH_SHORT).show();
             }
         });
+
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

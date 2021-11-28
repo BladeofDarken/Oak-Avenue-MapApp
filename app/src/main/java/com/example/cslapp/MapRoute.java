@@ -23,6 +23,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.google.android.gms.location.*;
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.routing.GraphHopperRoadManager;
 import org.osmdroid.bonuspack.routing.OSRMRoadManager;
 import org.osmdroid.bonuspack.routing.Road;
 import org.osmdroid.bonuspack.routing.RoadManager;
@@ -66,6 +67,8 @@ public class MapRoute extends AppCompatActivity {
     private static ArrayList<GeoPoint> waypoints = new ArrayList<GeoPoint>();
 
     private OSRMRoadManager roadManager = null;
+    public static RoadManager roadManager1 = null;
+
 
     GeoPoint getStartingMarker;
     GeoPoint getDestinationMarker;
@@ -118,6 +121,14 @@ public class MapRoute extends AppCompatActivity {
         roadManager = new OSRMRoadManager(this, MY_USER_AGENT);
         roadManager.setMean(OSRMRoadManager.MEAN_BY_FOOT);
 
+        roadManager1 = new GraphHopperRoadManager("6ad42ce1-fdc7-41a3-8f29-b777785a7fe3", true);
+
+        roadManager1.addRequestOption("vehicle=foot");
+        roadManager1.addRequestOption("optimize=true");
+
+
+
+
         newMarker.setIcon(getDrawable(R.drawable.greencurrentlocation));
 
 
@@ -154,7 +165,7 @@ public class MapRoute extends AppCompatActivity {
 
 
         // Faculty Buildings
-        GeoPoint ASBRoom = new GeoPoint(34.118359217371854, -118.06394942494653);
+        GeoPoint ASBRoom = new GeoPoint(34.11820423645267, -118.06407814167532);
         GeoPoint AssistantPrincipalsOffice = new GeoPoint(34.118118500427876, -118.0643308244969);
         GeoPoint CollegeAndCareerCenter = new GeoPoint(34.11811743850523, -118.06391616864046);
         GeoPoint PsychologistOffice = new GeoPoint(34.1181353782522, -118.06363595205275);
@@ -166,6 +177,7 @@ public class MapRoute extends AppCompatActivity {
 
 
         //Sports & Recreation Buildings
+        GeoPoint AquaticsCenter = new GeoPoint(34.11798860991574, -118.06525123090881);
         GeoPoint DanceStudio = new GeoPoint(34.11887553710273, -118.06504083612498);
         GeoPoint PerformingArts = new GeoPoint(34.11787689031118, -118.0649145241567);
         GeoPoint MediaCenter = new GeoPoint(34.11762892568293, -118.06442207806045);
@@ -183,7 +195,7 @@ public class MapRoute extends AppCompatActivity {
 
 
         // Parking structures
-        GeoPoint StaffParkingLot = new GeoPoint(34.117508629660776, -118.06534490570859);
+        GeoPoint StaffParkingLot = new GeoPoint(34.11771008513362, -118.06538422907911);
         GeoPoint NorthParkingLot = new GeoPoint(34.119545448920874, -118.06414766931512);
 
         //Other Buildings
@@ -281,11 +293,13 @@ public class MapRoute extends AppCompatActivity {
                     break;
                 case "Room 108-112":
                 case "Rooms 208-212":
+                case "Rooms 108-112, 208-212":
                     startMarker.setPosition(building1002);
                     waypoints.add(building1002);
                     break;
                 case "Rooms 113-116":
                 case "Rooms 213-216":
+                case "Rooms 113-116, 213-216":
                     startMarker.setPosition(building1003);
                     waypoints.add(building1003);
                     break;
@@ -302,6 +316,7 @@ public class MapRoute extends AppCompatActivity {
                     waypoints.add(Room601);
                     break;
                 case "Rooms 702-709":
+                case "Rooms 702-709, Weight Room, Dance Studio":
                     startMarker.setPosition(building700s);
                     waypoints.add(building700s);
                     break;
@@ -310,14 +325,16 @@ public class MapRoute extends AppCompatActivity {
                     waypoints.add(FootballField);
                     break;
                 case "Softball Field":
+                    startMarker.setPosition(SoftballField);
+                    waypoints.add(SoftballField);
+                    break;
+                case "Parking Lot - Staff":
+                case "Staff Parking Lot":
                     startMarker.setPosition(StaffParkingLot);
                     waypoints.add(StaffParkingLot);
                     break;
-                case "Parking Lot - Staff":
-                    startMarker.setPosition(SenateRoom);
-                    waypoints.add(SenateRoom);
-                    break;
                 case "Parking Lot - Student / North":
+                case "Student / North Parking Lot":
                     startMarker.setPosition(NorthParkingLot);
                     waypoints.add(NorthParkingLot);
                     break;
@@ -329,7 +346,9 @@ public class MapRoute extends AppCompatActivity {
                     startMarker.setPosition(WeightRoom);
                     waypoints.add(WeightRoom);
                     break;
-
+                case "Aquatics Center / Pool":
+                    startMarker.setPosition(AquaticsCenter);
+                    waypoints.add(AquaticsCenter);
             }
         }
 
@@ -462,6 +481,9 @@ public class MapRoute extends AppCompatActivity {
                     startMarker2.setPosition(WeightRoom);
                     waypoints.add(WeightRoom);
                     break;
+                case "Aquatics Center / Pool":
+                    startMarker2.setPosition(AquaticsCenter);
+                    waypoints.add(AquaticsCenter);
 
             }
         }
@@ -576,7 +598,7 @@ public class MapRoute extends AppCompatActivity {
 
  */
         System.out.println(waypoints);
-        Road road = roadManager.getRoad(waypoints);
+        Road road = roadManager1.getRoad(waypoints);
         Polyline roadOverlay = RoadManager.buildRoadOverlay(road);
         map.getOverlays().add(0, roadOverlay);
         // map.invalidate();
@@ -591,6 +613,7 @@ public class MapRoute extends AppCompatActivity {
 
             // check if location is enabled
             if (isLocationEnabled()) {
+                System.out.println("Location is enabled");
 
                 // getting last
                 // location from
@@ -604,6 +627,8 @@ public class MapRoute extends AppCompatActivity {
                     map.getOverlays().add(newMarker);
                     System.out.println("Message1");
                 }
+
+
             } else {
                 Toast.makeText(this, "Please turn on your location" , Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
