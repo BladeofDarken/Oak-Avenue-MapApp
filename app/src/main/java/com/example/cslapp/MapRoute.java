@@ -39,6 +39,7 @@ import java.lang.Math;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 
 public class MapRoute extends AppCompatActivity {
@@ -68,6 +69,8 @@ public class MapRoute extends AppCompatActivity {
 
     private OSRMRoadManager roadManager = null;
     public static RoadManager roadManager1 = null;
+    public static RoadManager roadManager2 = null;
+    public static RoadManager roadManager3 = null;
 
 
     GeoPoint getStartingMarker;
@@ -121,7 +124,10 @@ public class MapRoute extends AppCompatActivity {
         roadManager = new OSRMRoadManager(this, MY_USER_AGENT);
         roadManager.setMean(OSRMRoadManager.MEAN_BY_FOOT);
 
-        roadManager1 = new GraphHopperRoadManager("6ad42ce1-fdc7-41a3-8f29-b777785a7fe3", true);
+
+        roadManager1 = new GraphHopperRoadManager("b03b2897-af3e-47b4-83ca-f8cfefad541b", true);
+        roadManager2 = new GraphHopperRoadManager("86aebc74-0f9f-4cda-8fec-ce82f71ad17c", true);
+        roadManager3 = new GraphHopperRoadManager("7f4a401a-2a10-409f-99b3-bd674b4b5baa", true);
 
         roadManager1.addRequestOption("vehicle=foot");
         roadManager1.addRequestOption("optimize=true");
@@ -590,17 +596,44 @@ public class MapRoute extends AppCompatActivity {
 
 
     private void routeUpdate(){
-/*
-        for (int i = 0; i < waypoints.size(); i++){
-            System.out.println(i);
-            System.out.println(waypoints.get(i));
+
+        Random rd = new Random();
+        int int1 = rd.nextInt(3);
+
+        System.out.println(waypoints);
+
+        if (MainActivity.ServerButton == 1001){
+            Road road = roadManager.getRoad(waypoints);
+            Polyline roadOverlay = RoadManager.buildRoadOverlay(road);
+            map.getOverlays().add(0, roadOverlay);
+        }
+        else if (MainActivity.ServerButton == 1002){
+            if (int1 == 1){
+                Road road = roadManager1.getRoad(waypoints);
+                Polyline roadOverlay = RoadManager.buildRoadOverlay(road);
+                map.getOverlays().add(0, roadOverlay);
+            }
+            if (int1 == 2){
+                Road road = roadManager2.getRoad(waypoints);
+                Polyline roadOverlay = RoadManager.buildRoadOverlay(road);
+                map.getOverlays().add(0, roadOverlay);
+            }
+            if (int1 == 0){
+                Road road = roadManager3.getRoad(waypoints);
+                Polyline roadOverlay = RoadManager.buildRoadOverlay(road);
+                map.getOverlays().add(0, roadOverlay);
+            }
+            else{
+                System.out.println("Error");
+            }
+
+
+        }
+        else{
+            System.out.println("Error");
         }
 
- */
-        System.out.println(waypoints);
-        Road road = roadManager1.getRoad(waypoints);
-        Polyline roadOverlay = RoadManager.buildRoadOverlay(road);
-        map.getOverlays().add(0, roadOverlay);
+
         // map.invalidate();
 
 

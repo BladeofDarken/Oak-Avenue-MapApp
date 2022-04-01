@@ -22,7 +22,8 @@ import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private static final int STORAGE_PERMISSION_CODE = 100;
+    private static final int LOCATION_PERMISSION_CODE = 101;
 
 
     public static class ActivityClass {
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static int MainButtonPressed;
+    public static int ServerButton;
 
     public static String dataretrieve;
     public static String dataretrieve2;
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     Button button1;
     Button button2;
     Button button3;
+    Button button4;
+    Button button5;
 
     Thread newThread;
 
@@ -66,11 +70,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         MainButtonPressed = 0;
+        ServerButton = 1001;
 
 
         button1 = findViewById(R.id.currentlocation);
         button2 = findViewById(R.id.btnRound2);
         button3 = findViewById(R.id.btnRound3);
+        button4 = findViewById(R.id.s1);
+        button5 = findViewById(R.id.s2);
+
 
 
 
@@ -82,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 MainButtonPressed = 1;
                 runnable();
                 changeToCategoryDepartmentsActivity();
+                checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
 
             }
         });
@@ -108,6 +117,27 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Server 1 Clicked!");
+                ServerButton = 1001;
+
+
+            }
+
+        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Server 2 Clicked!");
+                ServerButton = 1002;
+            }
+
+        });
+
+
+
         checkFirstRun();
 
     }
@@ -116,13 +146,14 @@ public class MainActivity extends AppCompatActivity {
         boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
         if (isFirstRun){
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setCancelable(true);
+            builder.setCancelable(false);
             builder.setTitle("Terms and Conditions Acknowledgement");
             builder.setMessage("Thank you for using our map. Please review our privacy policy. Keep in mind, everything from this app is through AI software, so please use your own discretion. The map will only bring you to an approximate location, and if you find any bugs, please help us and report them. Happy travels!");
             builder.setPositiveButton("I UNDERSTAND",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_PERMISSION_CODE);
                         }
                     });
 
@@ -134,11 +165,49 @@ public class MainActivity extends AppCompatActivity {
                     .putBoolean("isFirstRun", false)
                     .apply();
         }
+
+    }
+
+    public void checkPermission(String permission, int requestCode)
+    {
+        if (ContextCompat.checkSelfPermission(MainActivity.this, permission) == PackageManager.PERMISSION_DENIED) {
+
+            // Requesting the permission
+            ActivityCompat.requestPermissions(MainActivity.this, new String[] { permission }, requestCode);
+        }
+        else {
+            System.out.println("Permission is already granted");
+        }
     }
 
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode,
+                permissions,
+                grantResults);
 
+        if (requestCode == LOCATION_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(MainActivity.this, "Location Permission Granted", Toast.LENGTH_SHORT) .show();
+            }
+            else {
+                Toast.makeText(MainActivity.this, "Location Permission Denied", Toast.LENGTH_SHORT) .show();
+            }
+        }
+        else if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(MainActivity.this, "Storage Permission Granted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivity.this, "Storage Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
 
+    }
 
     private void variablesTransferred(){
 
@@ -156,7 +225,25 @@ public class MainActivity extends AppCompatActivity {
         else if (dataretrieve.equals(dataretrieve2)){
             Toast.makeText(getApplicationContext(),"Seems like your starting location is the same as your destination. You want to travel to where you are now? \uD83D\uDE09 ", Toast.LENGTH_LONG).show();
         }
+        else if (MainActivity.ServerButton == 1002 && dataretrieve.equals("My Current Location")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setCancelable(false);
+            builder.setTitle("ERROR 426");
+            builder.setMessage("Due to a shortage of server resources, Server 1 is the only server which can be used for My Current Location. Server 1 has been selected for your convenience. If you wish to use Server 2, please select from the Main Menu");
+            builder.setPositiveButton("I UNDERSTAND, LETS PROCEED",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            MainActivity.ServerButton = 1001;
+                        }
+                    });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
         else{
+            System.out.println(dataretrieve);
+            System.out.println(MainActivity.ServerButton);
             Intent intent = new Intent(MainActivity.this, MapRoute.class);
             startActivity(intent);
         }
