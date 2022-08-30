@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
                                     System.out.println("Final Value : " + selectedValue);
                                     CatagoryDepartments.ButtonClicked = 0;
                                     // System.out.println("4" + startingLocation.selectedItem);
-                                }
+                                  }
 
                             // System.out.println("5" + startingLocation.selectedItem);
 

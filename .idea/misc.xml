@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ryana/IntelliJIDEAProjects/CSLApp2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.35789473684210527" />
+        <entry key="..\:/Users/ryana/IntelliJIDEAProjects/CSLApp2/app/src/main/res/layout/activity_catagory_departments.xml" value="0.5" />
         <entry key="..\:/Users/ryana/IntelliJIDEAProjects/CSLApp2/app/src/main/res/layout/activity_main.xml" value="0.33881578947368424" />
+        <entry key="..\:/Users/ryana/IntelliJIDEAProjects/CSLApp2/app/src/main/res/layout/activity_map_route.xml" value="0.22894736842105262" />
+        <entry key="..\:/Users/ryana/IntelliJIDEAProjects/CSLApp2/app/src/main/res/layout/activity_search_by_department.xml" value="0.34769736842105264" />
+        <entry key="..\:/Users/ryana/IntelliJIDEAProjects/CSLApp2/app/src/main/res/layout/activity_starting_location.xml" value="0.22" />
       </map>
     </option>
   </component>
