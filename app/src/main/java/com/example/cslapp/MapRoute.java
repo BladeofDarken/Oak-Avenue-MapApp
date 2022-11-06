@@ -93,6 +93,8 @@ public class MapRoute extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+
+
         setContentView(R.layout.activity_map_route);
 
         Button button4 = findViewById(R.id.currentlocation);
@@ -158,57 +160,43 @@ public class MapRoute extends AppCompatActivity {
     }
 
 
+
     private void newMethod() {
-
-        //Instructional Buildings
-        GeoPoint building1001 = new GeoPoint(34.11750490859198, -118.0636860310302);
-        GeoPoint building1002 = new GeoPoint(34.117697431296456, -118.06367660778572);
-        GeoPoint building1003 = new GeoPoint(34.117944604990726, -118.06362681312181);
-        GeoPoint DrDougLearningCenter = new GeoPoint(34.11868230876788, -118.06611361556728);
-        GeoPoint building700s = new GeoPoint(34.11879993429907, -118.06470320821654);
-        GeoPoint building400s = new GeoPoint(34.11870191973566, -118.06386627158332);
-        GeoPoint building500s = new GeoPoint(34.11889904744651, -118.06364119028532);
-
-
-        // Faculty Buildings
-        GeoPoint ASBRoom = new GeoPoint(34.11820423645267, -118.06407814167532);
-        GeoPoint AssistantPrincipalsOffice = new GeoPoint(34.118118500427876, -118.0643308244969);
-        GeoPoint CollegeAndCareerCenter = new GeoPoint(34.11811743850523, -118.06391616864046);
-        GeoPoint PsychologistOffice = new GeoPoint(34.1181353782522, -118.06363595205275);
-        GeoPoint AttendanceOffice = new GeoPoint(34.118071152851904, -118.06411672807296);
-        GeoPoint ConferenceRoom = new GeoPoint(34.11809812001104, -118.06440262869094);
-        GeoPoint NursesOffice = new GeoPoint(34.11817437078218, -118.06441657885566);
-        GeoPoint SenateRoom = new GeoPoint(34.117952941166635, -118.06440349892497);
+        // Instructional Buildings
+        GeoPoint Building100s = new GeoPoint(34.11861424769509, -118.06906156575225);
+        GeoPoint LibraryMediaCenter = new GeoPoint(34.11883591166017, -118.06881167567428);
+        GeoPoint Room200 = new GeoPoint(34.118970996809104, -118.06868799197987);
+        GeoPoint Room202 = new GeoPoint(34.11872658423966, -118.06878458425345);
+        GeoPoint Room301 = new GeoPoint(34.11850312581686, -118.0697219358078);
+        GeoPoint Room308 = new GeoPoint(34.11890754010351, -118.06983413560383);
+        GeoPoint Building400s = new GeoPoint(34.11908958224379, -118.0689397025037);
+        GeoPoint Building500s = new GeoPoint(34.11928128454475, -118.06898768887885);
+        GeoPoint ELPRoom = new GeoPoint(34.118946124468785, -118.07023235031818);
 
 
-
-        //Sports & Recreation Buildings
-        GeoPoint AquaticsCenter = new GeoPoint(34.11798860991574, -118.06525123090881);
-        GeoPoint DanceStudio = new GeoPoint(34.11887553710273, -118.06504083612498);
-        GeoPoint PerformingArts = new GeoPoint(34.11787689031118, -118.0649145241567);
-        GeoPoint MediaCenter = new GeoPoint(34.11762892568293, -118.06442207806045);
-        GeoPoint TennisCourts = new GeoPoint(34.117486144986756, -118.0658385353368);
-        GeoPoint SoftballField = new GeoPoint(34.11820837278962, -118.06593097989567);
-        GeoPoint LockerRooms = new GeoPoint(34.118251371129254, -118.06511096690667);
-        GeoPoint InSchoolTennisCourts = new GeoPoint(34.118747213590446, -118.06527458073221);
-        GeoPoint LunchShelter = new GeoPoint(34.118965698942525, -118.06405871664559);
-        GeoPoint CafeteriaStaffLounge = new GeoPoint(34.11900300000708, -118.06412307729107);
-        GeoPoint FootballField = new GeoPoint(34.119963658918834, -118.06505593848995);
-        GeoPoint Room601 = new GeoPoint(34.11858230313357, -118.06419770167129);
-        GeoPoint OutdoorBasketballCourts = new GeoPoint(34.11821040516513, -118.0648133098100);
-        GeoPoint BecknerGym = new GeoPoint(34.118362625393765, -118.0648084618049);
-        GeoPoint WeightRoom = new GeoPoint(34.11898995655553, -118.06496588924037);
+        // AdministrationBuildings
+        GeoPoint Office_General = new GeoPoint(34.11920532426637, -118.06823423699191);
+        GeoPoint AttendanceOffice = new GeoPoint(34.11920532426637, -118.06823423699191);
+        GeoPoint CounselorOffice = new GeoPoint(34.11933799253073, -118.06827379666952);
 
 
-        // Parking structures
-        GeoPoint StaffParkingLot = new GeoPoint(34.11771008513362, -118.06538422907911);
-        GeoPoint NorthParkingLot = new GeoPoint(34.119545448920874, -118.06414766931512);
+        // PopularLocations
+        GeoPoint FrontLawn = new GeoPoint(34.1189907002026, -118.06813176069927);
+        GeoPoint CharacterGarden = new GeoPoint(34.1190229998501, -118.06878275032294);
+        GeoPoint Quad = new GeoPoint(34.11882981736492, -118.06916092383042);
+        GeoPoint LunchShelter = new GeoPoint(34.11877170814532, -118.0695518499457);
 
-        //Other Buildings
-        GeoPoint SeniorCircle = new GeoPoint(34.11846193728855, -118.06444404741711);
 
-        //Entrances
-        GeoPoint FrontGate = new GeoPoint(34.11783147622169, -118.06465583951488);
+        // Sports Facilities
+        GeoPoint Gym = new GeoPoint(34.11868025107202, -118.0698752396658);
+        GeoPoint SmallGym = new GeoPoint(34.11863846054736, -118.07000961822838);
+        GeoPoint GirlsLockerRoom = new GeoPoint(34.11847412122788, -118.07002345675019);
+        GeoPoint BoysLockerRoom = new GeoPoint(34.1188310998218, -118.07012275164075);
+        GeoPoint BasketballCourts = new GeoPoint(34.11818865800368, -118.0702576260365);
+        GeoPoint PickleballCourts = new GeoPoint(34.11859875588911, -118.07040099683263);
+        GeoPoint AdditionalPickleBasketballCourt = new GeoPoint(34.11893308170183, -118.07050740984411);
+        GeoPoint BackField = new GeoPoint(34.11844249722543, -118.07093569478131);
+
 
 
         // NEW SECTION STARTS HERE
@@ -223,273 +211,118 @@ public class MapRoute extends AppCompatActivity {
             switch (MainActivity.dataretrieve) {
                 case "My Current Location":
                     break;
-                case "Activities Office":
-                case "ASB Room":
-                    startMarker.setPosition(ASBRoom);
-                    waypoints.add(ASBRoom);
-                    break;
-                case "Assistant Principal's Office":
-                case "Principal's Office":
-                case "Sports Director's Office":
-                    startMarker.setPosition(AssistantPrincipalsOffice);
-                    waypoints.add(AssistantPrincipalsOffice);
+                case "Additional Sports Area":
+                    startMarker.setPosition(AdditionalPickleBasketballCourt);
+                    waypoints.add(AdditionalPickleBasketballCourt);
                     break;
                 case "Attendance Office":
                     startMarker.setPosition(AttendanceOffice);
                     waypoints.add(AttendanceOffice);
                     break;
+                case "Back Field":
+                    startMarker.setPosition(BackField);
+                    waypoints.add(BackField);
+                    break;
                 case "Basketball Courts":
-                    startMarker.setPosition(OutdoorBasketballCourts);
-                    waypoints.add(OutdoorBasketballCourts);
+                    startMarker.setPosition(BasketballCourts);
+                    waypoints.add(BasketballCourts);
                     break;
-                case "Beckner's Gym":
+                case "Boy's Locker Room":
+                    startMarker.setPosition(BoysLockerRoom);
+                    waypoints.add(BoysLockerRoom);
+                    break;
+                case "Character Garden":
+                    startMarker.setPosition(CharacterGarden);
+                    waypoints.add(CharacterGarden);
+                    break;
+                case "Counselor Office":
+                    startMarker.setPosition(CounselorOffice);
+                    waypoints.add(CounselorOffice);
+                    break;
+                case "ELP Room":
+                    startMarker.setPosition(ELPRoom);
+                    waypoints.add(ELPRoom);
+                    break;
+                case "Front Lawn":
+                    startMarker.setPosition(FrontLawn);
+                    waypoints.add(FrontLawn);
+                    break;
+                case "Girl's Locker Room":
+                    startMarker.setPosition(GirlsLockerRoom);
+                    waypoints.add(GirlsLockerRoom);
+                    break;
                 case "Gym":
-                    startMarker.setPosition(BecknerGym);
-                    waypoints.add(BecknerGym);
+                    startMarker.setPosition(Gym);
+                    waypoints.add(Gym);
                     break;
-                case "College and Career Center":
-                case "Counselor's Office":
-                    startMarker.setPosition(CollegeAndCareerCenter);
-                    waypoints.add(CollegeAndCareerCenter);
-                    break;
-                case "Conference Room":
-                    startMarker.setPosition(ConferenceRoom);
-                    waypoints.add(ConferenceRoom);
-                    break;
-                case "Dance Studio":
-                    startMarker.setPosition(DanceStudio);
-                    waypoints.add(DanceStudio);
-                    break;
-                case "Dr. Doug's Learning Center":
-                    startMarker.setPosition(DrDougLearningCenter);
-                    waypoints.add(DrDougLearningCenter);
-                    break;
-                case "Football Field / Track":
-                    startMarker.setPosition(FootballField);
-                    waypoints.add(FootballField);
-                    break;
-                case "In-school Tennis Courts":
-                    startMarker.setPosition(InSchoolTennisCourts);
-                    waypoints.add(InSchoolTennisCourts);
-                    break;
-                case "Locker Rooms":
-                    startMarker.setPosition(LockerRooms);
-                    waypoints.add(LockerRooms);
+                case "Library/Media Center":
+                    startMarker.setPosition(LibraryMediaCenter);
+                    waypoints.add(LibraryMediaCenter);
                     break;
                 case "Lunch Shelter":
                     startMarker.setPosition(LunchShelter);
                     waypoints.add(LunchShelter);
                     break;
-                case "Media Center":
-                    startMarker.setPosition(MediaCenter);
-                    waypoints.add(MediaCenter);
+                case "Office (General)":
+                    startMarker.setPosition(Office_General);
+                    waypoints.add(Office_General);
                     break;
-                case "Nurse's Office":
-                    startMarker.setPosition(NursesOffice);
-                    waypoints.add(NursesOffice);
+                case "Pickleball Courts":
+                    startMarker.setPosition(PickleballCourts);
+                    waypoints.add(PickleballCourts);
                     break;
-                case "Psychologist's Office":
-                    startMarker.setPosition(PsychologistOffice);
-                    waypoints.add(PsychologistOffice);
+                case "Quad":
+                    startMarker.setPosition(Quad);
+                    waypoints.add(Quad);
                     break;
-                case "Rooms 101-107":
-                case "Rooms 201-207":
-                    startMarker.setPosition(building1001);
-                    waypoints.add(building1001);
+// left off here
+                case "":
+                    startMarker.setPosition();
+                    waypoints.add();
                     break;
-                case "Room 108-112":
-                case "Rooms 208-212":
-                case "Rooms 108-112, 208-212":
-                    startMarker.setPosition(building1002);
-                    waypoints.add(building1002);
+
+                case "":
+                    startMarker.setPosition();
+                    waypoints.add();
                     break;
-                case "Rooms 113-116":
-                case "Rooms 213-216":
-                case "Rooms 113-116, 213-216":
-                    startMarker.setPosition(building1003);
-                    waypoints.add(building1003);
+
+                case "":
+                    startMarker.setPosition();
+                    waypoints.add();
                     break;
-                case "Rooms 401-409":
-                    startMarker.setPosition(building400s);
-                    waypoints.add(building400s);
+
+                case "":
+                    startMarker.setPosition();
+                    waypoints.add();
                     break;
-                case "Rooms 501-507":
-                    startMarker.setPosition(building500s);
-                    waypoints.add(building500s);
+
+                case "":
+                    startMarker.setPosition();
+                    waypoints.add();
                     break;
-                case "Room 601":
-                    startMarker.setPosition(Room601);
-                    waypoints.add(Room601);
+
+                case "":
+                    startMarker.setPosition();
+                    waypoints.add();
                     break;
-                case "Rooms 702-709":
-                case "Rooms 702-709, Weight Room, Dance Studio":
-                    startMarker.setPosition(building700s);
-                    waypoints.add(building700s);
+                case "":
+                    startMarker.setPosition();
+                    waypoints.add();
                     break;
-                case "Soccer Field":
-                    startMarker.setPosition(FootballField);
-                    waypoints.add(FootballField);
-                    break;
-                case "Softball Field":
-                    startMarker.setPosition(SoftballField);
-                    waypoints.add(SoftballField);
-                    break;
-                case "Parking Lot - Staff":
-                case "Staff Parking Lot":
-                    startMarker.setPosition(StaffParkingLot);
-                    waypoints.add(StaffParkingLot);
-                    break;
-                case "Parking Lot - Student / North":
-                case "Student / North Parking Lot":
-                    startMarker.setPosition(NorthParkingLot);
-                    waypoints.add(NorthParkingLot);
-                    break;
-                case "Tennis Courts":
-                    startMarker.setPosition(TennisCourts);
-                    waypoints.add(TennisCourts);
-                    break;
-                case "Weight Room":
-                    startMarker.setPosition(WeightRoom);
-                    waypoints.add(WeightRoom);
-                    break;
-                case "Aquatics Center / Pool":
-                    startMarker.setPosition(AquaticsCenter);
-                    waypoints.add(AquaticsCenter);
+
+
             }
         }
 
 
         if (MainActivity.dataretrieve2 != null) {
             switch (MainActivity.dataretrieve2) {
-                case "My Current Location":
-                    break;
-                case "Activities Office":
                 case "ASB Room":
-                    startMarker2.setPosition(ASBRoom);
-                    waypoints.add(ASBRoom);
+                    startMarker2.setPosition();
+                    waypoints.add();
                     break;
-                case "Assistant Principal's Office":
-                case "Principal's Office":
-                case "Sports Director's Office":
-                    startMarker2.setPosition(AssistantPrincipalsOffice);
-                    waypoints.add(AssistantPrincipalsOffice);
-                    break;
-                case "Attendance Office":
-                    startMarker2.setPosition(AttendanceOffice);
-                    waypoints.add(AttendanceOffice);
-                    break;
-                case "Basketball Courts":
-                    startMarker2.setPosition(OutdoorBasketballCourts);
-                    waypoints.add(OutdoorBasketballCourts);
-                    break;
-                case "Beckner's Gym":
-                case "Gym":
-                    startMarker2.setPosition(BecknerGym);
-                    waypoints.add(BecknerGym);
-                    break;
-                case "College and Career Center":
-                case "Counselor's Office":
-                    startMarker2.setPosition(CollegeAndCareerCenter);
-                    waypoints.add(CollegeAndCareerCenter);
-                    break;
-                case "Conference Room":
-                    startMarker2.setPosition(ConferenceRoom);
-                    waypoints.add(ConferenceRoom);
-                    break;
-                case "Dance Studio":
-                    startMarker2.setPosition(DanceStudio);
-                    waypoints.add(DanceStudio);
-                    break;
-                case "Dr. Doug's Learning Center":
-                    startMarker2.setPosition(DrDougLearningCenter);
-                    waypoints.add(DrDougLearningCenter);
-                    break;
-                case "Football Field / Track":
-                    startMarker2.setPosition(FootballField);
-                    waypoints.add(FootballField);
-                    break;
-                case "In-school Tennis Courts":
-                    startMarker2.setPosition(InSchoolTennisCourts);
-                    waypoints.add(InSchoolTennisCourts);
-                    break;
-                case "Locker Rooms":
-                    startMarker2.setPosition(LockerRooms);
-                    waypoints.add(LockerRooms);
-                    break;
-                case "Lunch Shelter":
-                    startMarker2.setPosition(LunchShelter);
-                    waypoints.add(LunchShelter);
-                    break;
-                case "Media Center":
-                    startMarker2.setPosition(MediaCenter);
-                    waypoints.add(MediaCenter);
-                    break;
-                case "Nurse's Office":
-                    startMarker2.setPosition(NursesOffice);
-                    waypoints.add(NursesOffice);
-                    break;
-                case "Psychologist's Office":
-                    startMarker2.setPosition(PsychologistOffice);
-                    waypoints.add(PsychologistOffice);
-                    break;
-                case "Rooms 101-107":
-                case "Rooms 201-207":
-                    startMarker2.setPosition(building1001);
-                    waypoints.add(building1001);
-                    break;
-                case "Room 108-112":
-                case "Rooms 208-212":
-                    startMarker2.setPosition(building1002);
-                    waypoints.add(building1002);
-                    break;
-                case "Rooms 113-116":
-                case "Rooms 213-216":
-                    startMarker2.setPosition(building1003);
-                    waypoints.add(building1003);
-                    break;
-                case "Rooms 401-409":
-                    startMarker2.setPosition(building400s);
-                    waypoints.add(building400s);
-                    break;
-                case "Rooms 501-507":
-                    startMarker2.setPosition(building500s);
-                    waypoints.add(building500s);
-                    break;
-                case "Room 601":
-                    startMarker2.setPosition(Room601);
-                    waypoints.add(Room601);
-                    break;
-                case "Rooms 702-709":
-                    startMarker2.setPosition(building700s);
-                    waypoints.add(building700s);
-                    break;
-                case "Soccer Field":
-                    startMarker2.setPosition(FootballField);
-                    waypoints.add(FootballField);
-                    break;
-                case "Softball Field":
-                    startMarker2.setPosition(StaffParkingLot);
-                    waypoints.add(StaffParkingLot);
-                    break;
-                case "Parking Lot - Staff":
-                    startMarker2.setPosition(SenateRoom);
-                    waypoints.add(SenateRoom);
-                    break;
-                case "Parking Lot - Student / North":
-                    startMarker2.setPosition(NorthParkingLot);
-                    waypoints.add(NorthParkingLot);
-                    break;
-                case "Tennis Courts":
-                    startMarker2.setPosition(TennisCourts);
-                    waypoints.add(TennisCourts);
-                    break;
-                case "Weight Room":
-                    startMarker2.setPosition(WeightRoom);
-                    waypoints.add(WeightRoom);
-                    break;
-                case "Aquatics Center / Pool":
-                    startMarker2.setPosition(AquaticsCenter);
-                    waypoints.add(AquaticsCenter);
+
+                // start here
 
             }
         }

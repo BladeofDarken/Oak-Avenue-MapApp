@@ -14,12 +14,68 @@ import androidx.appcompat.widget.SearchView;
 public class startingLocation extends AppCompatActivity {
 
     ListView listView;
-    String[] allLocations = {"Activities Office", "ASB Room", "Aquatics Center / Pool", "Assistant Principal's Office", "Attendance Office", "Basketball Courts", "Beckner's Gym", "College and Career Center", "Conference Room", "Counselor's Office", "Dance Studio", "Dr. Doug's Learning Center", "Football Field / Track", "Gym", "In-school Tennis Courts", "Locker Rooms", "Lunch Shelter", "Media Center", "Nurse's Office", "Parking Lot - Staff", "Parking Lot - Student / North",  "Principal's Office", "Psychologist's Office", "Rooms 101-107", "Room 108-112", "Rooms 113-116", "Rooms 201-207", "Rooms 208-212", "Rooms 213-216", "Rooms 401-409", "Rooms 501-507", "Room 601", "Rooms 702-709", "Senate Room", "Soccer Field", "Softball Field", "Sports Director's Office", "Tennis Courts", "Weight Room"};
-    String[] PopularDestinations = {"ASB Room", "College and Career Center", "Counselor's Office", "Football Field / Track", "Gym", "Lunch Shelter", "Media Center", "Nurse's Office"};
-    String[] AdministrationBuildings = {"College and Career Center", "Counselor's Office", "Nurse's Office", "Psychologist's Office", "Attendance Office", "Principal's Office", "Assistant Principal's Office", "Sports Director's Office", "Activities Office", "Conference Room", "Senate Room"};
-    String[] SportsFacilities = {"Aquatics Center / Pool", "Basketball Courts", "Beckner's Gym", "Football Field/Track", "In-school Tennis Courts", "Locker Rooms", "Soccer Field", "Softball Field", "Tennis Courts", "Weight Room", "Dance Studio"};
-    String[] ParkingLots = {"Student / North Parking Lot", "Staff Parking Lot"};
-    String[] InstructionalBuildings = {"Rooms 101-107", "Rooms 201-207", "Rooms 108-112, 208-212", "Rooms 113-116, 213-216", "Rooms 702-709, Weight Room, Dance Studio", "Rooms 401-409", "Rooms 501-507", "Dr. Doug's Learning Center"};
+    String[] allLocations = {
+            "Additional Sports Area",
+            "Attendance Office",
+            "Back Field",
+            "Basketball Courts",
+            "Boy's Locker Room",
+            "Character Garden",
+            "Counselor Office",
+            "ELP Room",
+            "Front Lawn",
+            "Girl's Locker Room",
+            "Gym",
+            "Library/Media Center",
+            "Lunch Shelter",
+            "Office (General)",
+            "Pickleball Courts",
+            "Quad",
+            "Room 101-111",
+            "Room 200",
+            "Room 202",
+            "Room 301",
+            "Room 308",
+            "Room 401-414",
+            "Room 501-513",
+            "Small Gym"
+    };
+
+    String[] PopularDestinations = {
+            "Front Lawn",
+            "Character Garden",
+            "Quad",
+            "Lunch Shelter",
+    };
+    String[] AdministrationBuildings = {
+            "Office (General)",
+            "Attendance Office",
+            "Counselor Office"
+
+    };
+    String[] SportsFacilities = {
+            "Gym",
+            "Small Gym",
+            "Girl's Locker Room",
+            "Boy's Locker Room",
+            "Basketball Courts",
+            "Pickleball Courts",
+            "Additional Sports Area",
+            "Back Field",
+    };
+    String[] ParkingLots = {};
+
+    String[] InstructionalBuildings = {
+            "Room 101-111",
+            "Room 200",
+            "Room 202",
+            "Room 301",
+            "Room 308",
+            "Room 401-414",
+            "Room 501-513"
+    };
+
+
     ArrayAdapter<String> arrayAdapter;
     public static String selectedItem;
 
