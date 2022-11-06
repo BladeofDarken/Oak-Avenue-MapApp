@@ -275,39 +275,42 @@ public class MapRoute extends AppCompatActivity {
                     startMarker.setPosition(Quad);
                     waypoints.add(Quad);
                     break;
-// left off here
-                case "":
-                    startMarker.setPosition();
-                    waypoints.add();
+
+                case "Room 101-111":
+                    startMarker.setPosition(Building100s);
+                    waypoints.add(Building100s);
                     break;
 
-                case "":
-                    startMarker.setPosition();
-                    waypoints.add();
+                case "Room 200":
+                    startMarker.setPosition(Room200);
+                    waypoints.add(Room200);
+                    break;
+                case "Room 202":
+                    startMarker.setPosition(Room202);
+                    waypoints.add(Room202);
                     break;
 
-                case "":
-                    startMarker.setPosition();
-                    waypoints.add();
+                case "Room 301":
+                    startMarker.setPosition(Room301);
+                    waypoints.add(Room301);
                     break;
 
-                case "":
-                    startMarker.setPosition();
-                    waypoints.add();
+                case "Room 308":
+                    startMarker.setPosition(Room308);
+                    waypoints.add(Room308);
                     break;
 
-                case "":
-                    startMarker.setPosition();
-                    waypoints.add();
+                case "Room 401-414":
+                    startMarker.setPosition(Building400s);
+                    waypoints.add(Building400s);
                     break;
-
-                case "":
-                    startMarker.setPosition();
-                    waypoints.add();
+                case "Room 501-513":
+                    startMarker.setPosition(Building500s);
+                    waypoints.add(Building500s);
                     break;
-                case "":
-                    startMarker.setPosition();
-                    waypoints.add();
+                case "Small Gym":
+                    startMarker.setPosition(SmallGym);
+                    waypoints.add(SmallGym);
                     break;
 
 
@@ -317,13 +320,109 @@ public class MapRoute extends AppCompatActivity {
 
         if (MainActivity.dataretrieve2 != null) {
             switch (MainActivity.dataretrieve2) {
-                case "ASB Room":
-                    startMarker2.setPosition();
-                    waypoints.add();
+                case "My Current Location":
+                    break;
+                case "Additional Sports Area":
+                    startMarker2.setPosition(AdditionalPickleBasketballCourt);
+                    waypoints.add(AdditionalPickleBasketballCourt);
+                    break;
+                case "Attendance Office":
+                    startMarker2.setPosition(AttendanceOffice);
+                    waypoints.add(AttendanceOffice);
+                    break;
+                case "Back Field":
+                    startMarker2.setPosition(BackField);
+                    waypoints.add(BackField);
+                    break;
+                case "Basketball Courts":
+                    startMarker2.setPosition(BasketballCourts);
+                    waypoints.add(BasketballCourts);
+                    break;
+                case "Boy's Locker Room":
+                    startMarker2.setPosition(BoysLockerRoom);
+                    waypoints.add(BoysLockerRoom);
+                    break;
+                case "Character Garden":
+                    startMarker2.setPosition(CharacterGarden);
+                    waypoints.add(CharacterGarden);
+                    break;
+                case "Counselor Office":
+                    startMarker2.setPosition(CounselorOffice);
+                    waypoints.add(CounselorOffice);
+                    break;
+                case "ELP Room":
+                    startMarker2.setPosition(ELPRoom);
+                    waypoints.add(ELPRoom);
+                    break;
+                case "Front Lawn":
+                    startMarker2.setPosition(FrontLawn);
+                    waypoints.add(FrontLawn);
+                    break;
+                case "Girl's Locker Room":
+                    startMarker2.setPosition(GirlsLockerRoom);
+                    waypoints.add(GirlsLockerRoom);
+                    break;
+                case "Gym":
+                    startMarker2.setPosition(Gym);
+                    waypoints.add(Gym);
+                    break;
+                case "Library/Media Center":
+                    startMarker2.setPosition(LibraryMediaCenter);
+                    waypoints.add(LibraryMediaCenter);
+                    break;
+                case "Lunch Shelter":
+                    startMarker2.setPosition(LunchShelter);
+                    waypoints.add(LunchShelter);
+                    break;
+                case "Office (General)":
+                    startMarker2.setPosition(Office_General);
+                    waypoints.add(Office_General);
+                    break;
+                case "Pickleball Courts":
+                    startMarker2.setPosition(PickleballCourts);
+                    waypoints.add(PickleballCourts);
+                    break;
+                case "Quad":
+                    startMarker2.setPosition(Quad);
+                    waypoints.add(Quad);
                     break;
 
-                // start here
+                case "Room 101-111":
+                    startMarker2.setPosition(Building100s);
+                    waypoints.add(Building100s);
+                    break;
 
+                case "Room 200":
+                    startMarker2.setPosition(Room200);
+                    waypoints.add(Room200);
+                    break;
+                case "Room 202":
+                    startMarker2.setPosition(Room202);
+                    waypoints.add(Room202);
+                    break;
+
+                case "Room 301":
+                    startMarker2.setPosition(Room301);
+                    waypoints.add(Room301);
+                    break;
+
+                case "Room 308":
+                    startMarker2.setPosition(Room308);
+                    waypoints.add(Room308);
+                    break;
+
+                case "Room 401-414":
+                    startMarker2.setPosition(Building400s);
+                    waypoints.add(Building400s);
+                    break;
+                case "Room 501-513":
+                    startMarker2.setPosition(Building500s);
+                    waypoints.add(Building500s);
+                    break;
+                case "Small Gym":
+                    startMarker2.setPosition(SmallGym);
+                    waypoints.add(SmallGym);
+                    break;
             }
         }
 
